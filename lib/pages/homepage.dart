@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:menuapp/pages/hotel_page.dart';
@@ -76,6 +77,27 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 20.0,
           ),
+          StreamBuilder<QuerySnapshot>(
+              stream:
+                  FirebaseFirestore.instance.collection('hotel').snapshots(),
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (snapshot.hasData) {
+                  return ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: const [
+                      Hoteltile(),
+                      Hoteltile(),
+                      Hoteltile(),
+                    ],
+                  );
+                }
+                return Text('NO data here');
+              }),
           Expanded(
             child: ListView(
               scrollDirection: Axis.horizontal,
