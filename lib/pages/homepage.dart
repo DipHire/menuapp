@@ -7,7 +7,6 @@ import 'package:menuapp/util/hotel_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -78,31 +77,45 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 20.0,
             ),
-            Expanded(
-              child: StreamBuilder<QuerySnapshot>(
-                stream:
-                    FirebaseFirestore.instance.collection('hotels').snapshots(),
-                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  if (snapshot.hasData) {
-                    return Expanded(
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: snapshot.data!.docs
-                            .map((hotel) => hotelCard(() {}, hotel))
-                            .toList(),
-                      ),
-                    );
-                  }
-                  return const Text('NO data here');
-                },
-              ),
+            StreamBuilder<QuerySnapshot>(
+              stream:
+                  FirebaseFirestore.instance.collection('hotels').snapshots(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (snapshot.hasData) {
+                  return Container(
+                    height: 500,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: snapshot.data!.docs
+                          .map((hotel) => hotelCard(() {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HotelPage(),
+                                  ),
+                                );
+                              }, hotel))
+                          .toList(),
+                    ),
+                  );
+                }
+                return const Text('NO data here');
+              },
             ),
-            // Expanded(
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+ // Expanded(
             //   child: ListView(
             //     scrollDirection: Axis.horizontal,
             //     children: const [
@@ -117,13 +130,6 @@ class _HomePageState extends State<HomePage> {
             //   height: 35.0,
             //   color: Colors.transparent,
             // )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 
 
 

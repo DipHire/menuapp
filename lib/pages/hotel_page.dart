@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:menuapp/styles.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HotelPage extends StatelessWidget {
   const HotelPage({super.key});
@@ -13,7 +12,13 @@ class HotelPage extends StatelessWidget {
       "Chapati",
       "Batata Bhaji",
       "chole bhaji",
+      "Batata Bhaji",
+      "chole bhaji",
       "White Rice",
+      "Masala Rice",
+      "Papad",
+      "Launcha",
+      "Pani",
       "Masala Rice",
       "Papad",
       "Launcha",
