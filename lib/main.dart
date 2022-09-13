@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:menuapp/pages/homepage.dart';
+import 'package:menuapp/pages/loginpage.dart';
 import 'pages/hotel_page.dart';
 
 Future<void> main() async {

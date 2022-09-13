@@ -12,6 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var collectionstrem =
+      FirebaseFirestore.instance.collection('hotels').snapshots();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,8 +81,7 @@ class _HomePageState extends State<HomePage> {
               height: 20.0,
             ),
             StreamBuilder<QuerySnapshot>(
-              stream:
-                  FirebaseFirestore.instance.collection('hotels').snapshots(),
+              stream:collectionstrem,
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
