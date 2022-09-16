@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:menuapp/styles.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:menuapp/util/menuitems.dart';
@@ -39,7 +38,7 @@ class _HotelPageState extends State<HotelPage> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40.0,
             ),
 
@@ -53,7 +52,7 @@ class _HotelPageState extends State<HotelPage> {
                       borderRadius: BorderRadius.circular(15),
                       child: Image.asset('images/food.png')),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10.0,
                 ),
                 Flexible(
@@ -66,7 +65,7 @@ class _HotelPageState extends State<HotelPage> {
                         'Hotel Name',
                         style: kh2headline,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10.0,
                       ),
                       //description of hotel
@@ -82,7 +81,7 @@ class _HotelPageState extends State<HotelPage> {
             ),
 
             //menu
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             Text(
@@ -138,23 +137,24 @@ class _HotelPageState extends State<HotelPage> {
               stream: collectionstrem,
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
                 if (snapshot.hasData) {
                   return Container(
-                      height: 500,
-                      child: ListView(
-                        scrollDirection: Axis.vertical,
-                        children: snapshot.data!.docs
-                            .map(
-                              (menu) => itemName(),
-                            )
-                            .toList(),
-                      ));
+                    height: 500,
+                    child: ListView(
+                      scrollDirection: Axis.vertical,
+                      children: snapshot.data!.docs
+                          .map(
+                            (menu) => itemName(menu),
+                          )
+                          .toList(),
+                    ),
+                  );
                 }
-                return Text('NO data ');
+                return const Text('NO data Here');
               },
             ),
             Expanded(
@@ -167,7 +167,8 @@ class _HotelPageState extends State<HotelPage> {
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
                         items[position].toString(),
-                        style: TextStyle(fontSize: 18.0, color: Colors.white),
+                        style: const TextStyle(
+                            fontSize: 18.0, color: Colors.white),
                       ),
                     ),
                   );
