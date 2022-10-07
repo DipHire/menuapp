@@ -10,7 +10,7 @@ Widget itemName(QueryDocumentSnapshot doc) {
       padding: const EdgeInsets.all(20.0),
       child: Text(
         doc['item_name'],
-        style: TextStyle(fontSize: 18.0, color: Colors.white),
+        style: const TextStyle(fontSize: 18.0, color: Colors.white),
       ),
     ),
   );
