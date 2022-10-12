@@ -154,16 +154,18 @@ class _SignUpState extends State<SignUp> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
-      child: RaisedButton(
-        elevation: 5.0,
+      child: ElevatedButton(
         onPressed: () {
           Navigator.pushNamed(context, "/homepage");
         },
-        padding: const EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
+        style: ElevatedButton.styleFrom(
+          elevation: 5,
+          padding: const EdgeInsets.all(15.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          backgroundColor: Colors.white,
         ),
-        color: Colors.white,
         child: const Text(
           'SIGNUP',
           style: TextStyle(
